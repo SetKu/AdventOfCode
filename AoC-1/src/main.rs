@@ -9,7 +9,7 @@ fn main() {
     let mut current = Some(0);
 
     for line in input.lines() {
-        let stripped = line.replace("\n", "");
+        let stripped = line.replace('\n', "");
 
         if stripped.is_empty() {
             current = None;
@@ -20,7 +20,9 @@ fn main() {
 
         if current.is_some() {
             current = Some(current.unwrap() + value);
-        } else { current = Some(value) }
+        } else {
+            current = Some(value)
+        }
 
         let mut shift_index = None;
 
@@ -33,7 +35,7 @@ fn main() {
 
         if let Some(index) = shift_index {
             for shift_index in index..2 {
-                top_three[shift_index + 1] = top_three[shift_index]; 
+                top_three[shift_index + 1] = top_three[shift_index];
             }
 
             top_three[index] = current.unwrap();
@@ -41,5 +43,8 @@ fn main() {
     }
 
     println!("Part 1: Greatest Number of Calories: {}", top_three[0]);
-    println!("Part 2: Total Number of Calories (top three elves): {}", top_three.iter().sum::<usize>());
+    println!(
+        "Part 2: Total Number of Calories (top three elves): {}",
+        top_three.iter().sum::<usize>()
+    );
 }

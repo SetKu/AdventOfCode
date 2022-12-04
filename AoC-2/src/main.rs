@@ -31,13 +31,11 @@ fn process(input: &str) -> (usize, usize) {
     let choice_points = |c: usize| c + 1;
 
     for line in input.lines() {
-        let mut split = line.split(" ");
+        let mut split = line.split(' ');
         let opponent_char = split.next().unwrap().chars().next().unwrap();
         let my_char = split.next().unwrap().chars().next().unwrap();
-        std::mem::drop(split);
 
         let opponent_choice = map_choice(opponent_char);
-        std::mem::drop(opponent_char);
         let my_choice = map_choice(my_char);
         let my_points = choice_points(my_choice);
 
@@ -49,24 +47,36 @@ fn process(input: &str) -> (usize, usize) {
         } else {
             let win_condition = if my_choice == 0 { 2 } else { my_choice - 1 };
             let did_win = win_condition == opponent_choice;
-            if did_win { first_score += win_points }
+            if did_win {
+                first_score += win_points
+            }
         }
-        
+
         // Part 2
 
         let real_choice = match my_choice {
             // Lose
-            0 => if opponent_choice == 0 { 2 } else { opponent_choice - 1 }, 
+            0 => {
+                if opponent_choice == 0 {
+                    2
+                } else {
+                    opponent_choice - 1
+                }
+            }
             // Draw
             1 => {
                 second_score += draw_points;
                 opponent_choice
-            }, 
+            }
             // Win
             2 => {
                 second_score += win_points;
-                if opponent_choice == 2 { 0 } else { opponent_choice + 1 }
-            },
+                if opponent_choice == 2 {
+                    0
+                } else {
+                    opponent_choice + 1
+                }
+            }
             _ => panic!(),
         };
 
@@ -92,7 +102,7 @@ mod tests {
         let input = concat!(
             "A Z\n", // +3
             "B Z\n", // +9
-            "C Z", // +6
+            "C Z",   // +6
         );
 
         let result = process(input).0;
@@ -106,7 +116,7 @@ mod tests {
         let expected: usize = 8 + 2;
         let input = concat!(
             "A Z\n", // +8
-            "C X", // +2
+            "C X",   // +2
         );
 
         let result = process(input).1;

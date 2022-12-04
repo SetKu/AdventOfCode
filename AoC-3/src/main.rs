@@ -1,5 +1,8 @@
 #![allow(non_snake_case)]
 
+// Advent of Code
+// Day 3: https://adventofcode.com/2022/day/3
+
 use std::collections::HashMap;
 
 fn main() {
@@ -21,19 +24,13 @@ fn main() {
         let compartments = parsed.split_at(middle_index);
         assert_eq!(compartments.0.len(), compartments.1.len());
 
-        let mut compartment_item = None;
-
         'outer: for character in compartments.0.chars() {
             for acquaintance in compartments.1.chars() {
                 if character == acquaintance {
-                    compartment_item = Some(character);
+                    dup_compartment_item_types.push(character);
                     break 'outer;
                 }
             }
-        }
-
-        if let Some(item) = compartment_item {
-            dup_compartment_item_types.push(item);
         }
 
         let group = rucksack_index % 3;
@@ -43,10 +40,7 @@ fn main() {
             continue;
         }
 
-        current_group_item_types = current_group_item_types
-            .into_iter()
-            .filter(|c| rucksack.chars().any(|r| r == *c))
-            .collect();
+        current_group_item_types.retain(|c| rucksack.chars().any(|r| r == *c));
 
         if group == 2 {
             if let Some(item_type) = current_group_item_types.first() {
@@ -64,12 +58,6 @@ fn main() {
         .map(|c| type_priorities[&c])
         .sum();
 
-    println!(
-        "🎒 Compartment Priorities Sum: {}",
-        compartments_total
-    );
-    println!(
-        "🎅 Group Priorities Sum: {}",
-        groups_total
-    );
+    println!("🎒 Compartment Priorities Sum: {}", compartments_total);
+    println!("🎅 Group Priorities Sum: {}", groups_total);
 }
