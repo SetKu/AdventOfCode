@@ -1,5 +1,7 @@
 #![allow(non_snake_case)]
 
+use std::cmp::Ordering;
+
 fn main() {
     let input = include_str!("input.txt");
     let text = input.lines().next().expect("Unexpected puzzle input.");
@@ -18,9 +20,11 @@ fn find_unique_set(text: &str, len: usize) -> usize {
     for (index, character) in text.chars().enumerate() {
         char_buffer.push(character);
 
-        if char_buffer.len() > len {
+        let compare = len.cmp(&char_buffer.len());
+
+        if compare == Ordering::Less {
             char_buffer.remove(0);
-        } else if char_buffer.len() < len {
+        } else if compare == Ordering::Greater {
             continue;
         }
 

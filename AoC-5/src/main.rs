@@ -45,7 +45,7 @@ fn main() {
         let error_message = "Unexpected input.";
 
         copy = copy.strip_prefix("move ").expect(error_message).to_string();
-        let post_count_index = copy.find(" ").expect(error_message);
+        let post_count_index = copy.find(' ').expect(error_message);
         let container_count = copy[0..post_count_index]
             .parse::<usize>()
             .expect(error_message);
@@ -54,7 +54,7 @@ fn main() {
             .strip_prefix("from ")
             .expect(error_message)
             .to_string();
-        let post_origin_index = copy.find(" ").expect(error_message);
+        let post_origin_index = copy.find(' ').expect(error_message);
         let origin_stack_index = copy[0..post_origin_index]
             .parse::<usize>()
             .expect(error_message)
