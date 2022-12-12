@@ -294,16 +294,9 @@ mod tests {
         let mut c = mkdir("c");
         let mut d = mkdir("d");
         let mut f = mkdir("f");
-        d.files
-            .push(Rc::new(RefCell::new(touch("The Beatles Biography", 35000))));
-        f.files.push(Rc::new(RefCell::new(touch(
-            "Beatles: What are they?",
-            5000,
-        ))));
-        f.files.push(Rc::new(RefCell::new(touch(
-            "Magnifience of the Micro: Bugs",
-            10000,
-        ))));
+        d.files .push(Rc::new(RefCell::new(touch("The Beatles Biography", 35000))));
+        f.files.push(Rc::new(RefCell::new(touch("Beatles: What are they?", 5000))));
+        f.files.push(Rc::new(RefCell::new(touch("Magnifience of the Micro: Bugs", 10000))));
         b.subdirectories.push(Rc::new(RefCell::new(d)));
         c.subdirectories.push(Rc::new(RefCell::new(f)));
         a.subdirectories.push(Rc::new(RefCell::new(b)));
