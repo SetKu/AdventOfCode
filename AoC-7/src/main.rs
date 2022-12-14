@@ -56,7 +56,7 @@ fn main() {
 
     let directories = state.filesystem.borrow().all_subdirectories();
     let mut part_one_total = 0;
-    
+
     for directory in &directories {
         let size = directory.borrow().size();
 
@@ -165,18 +165,18 @@ impl Directory {
 }
 
 // fn qualified_name(path: DirRef) -> String {
-    // let first_name = path.borrow().name.clone();
-    // let mut name_chain = vec![first_name];
-    // let mut working_directory = path;
+// let first_name = path.borrow().name.clone();
+// let mut name_chain = vec![first_name];
+// let mut working_directory = path;
 
-    // while working_directory.borrow().parent.is_some() {
-        // let parent = working_directory.borrow().parent.as_ref().unwrap().clone();
-        // let name = parent.borrow().name.clone();
-        // name_chain.insert(0, name);
-        // working_directory = parent.clone();
-    // }
+// while working_directory.borrow().parent.is_some() {
+// let parent = working_directory.borrow().parent.as_ref().unwrap().clone();
+// let name = parent.borrow().name.clone();
+// name_chain.insert(0, name);
+// working_directory = parent.clone();
+// }
 
-    // name_chain.join(DIR_SEPARATOR)
+// name_chain.join(DIR_SEPARATOR)
 // }
 
 fn change_directory(state: &mut State, directory_name: &str) {
@@ -294,9 +294,16 @@ mod tests {
         let mut c = mkdir("c");
         let mut d = mkdir("d");
         let mut f = mkdir("f");
-        d.files .push(Rc::new(RefCell::new(touch("The Beatles Biography", 35000))));
-        f.files.push(Rc::new(RefCell::new(touch("Beatles: What are they?", 5000))));
-        f.files.push(Rc::new(RefCell::new(touch("Magnifience of the Micro: Bugs", 10000))));
+        d.files
+            .push(Rc::new(RefCell::new(touch("The Beatles Biography", 35000))));
+        f.files.push(Rc::new(RefCell::new(touch(
+            "Beatles: What are they?",
+            5000,
+        ))));
+        f.files.push(Rc::new(RefCell::new(touch(
+            "Magnifience of the Micro: Bugs",
+            10000,
+        ))));
         b.subdirectories.push(Rc::new(RefCell::new(d)));
         c.subdirectories.push(Rc::new(RefCell::new(f)));
         a.subdirectories.push(Rc::new(RefCell::new(b)));

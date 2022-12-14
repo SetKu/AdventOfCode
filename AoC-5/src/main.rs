@@ -64,10 +64,7 @@ fn main() {
             .strip_prefix("to ")
             .expect(error_message)
             .to_string();
-        let dest_stack_index = copy[0..]
-            .parse::<usize>()
-            .expect(error_message)
-            - 1;
+        let dest_stack_index = copy[0..].parse::<usize>().expect(error_message) - 1;
 
         for _ in 0..container_count {
             let container = part_one[origin_stack_index].pop().expect(error_message);

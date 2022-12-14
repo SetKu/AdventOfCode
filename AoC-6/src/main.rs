@@ -33,7 +33,7 @@ fn find_unique_set(text: &str, len: usize) -> usize {
         let mut buffer_copy = char_buffer.clone();
         buffer_copy.sort();
         buffer_copy.dedup();
-        
+
         if buffer_copy.len() == len {
             marker_end_index = index;
             break;
