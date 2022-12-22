@@ -1,8 +1,5 @@
 #![allow(non_snake_case)]
 
-// Advent of Code 2022
-// Day 5: https://adventofcode.com/2022/day/5
-
 const CONTAINER_BLOCK_SIZE: usize = 4;
 
 type Container = char;

@@ -1,8 +1,5 @@
 #![allow(non_snake_case)]
 
-// Advent of Code 2022
-// Day 1: https://adventofcode.com/2022/day/1
-
 fn main() {
     let input = include_str!("input.txt");
     let mut top_three = [0usize, 0, 0];

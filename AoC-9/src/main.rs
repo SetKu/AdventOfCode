@@ -81,7 +81,7 @@ fn visited_tail_positions(input: &str, knots: usize) -> usize {
                             previous_knot.0 - current_knot.0,
                             previous_knot.1 - current_knot.1,
                         );
-                        
+
                         current_knot.0 += delta.0.clamp(-1, 1);
                         current_knot.1 += delta.1.clamp(-1, 1);
                     }
@@ -104,37 +104,37 @@ fn visited_tail_positions(input: &str, knots: usize) -> usize {
 }
 
 // fn visualize_positions(positions: Vec<(isize, isize)>) -> String {
-    // let mut string = String::new();
+// let mut string = String::new();
 
-    // if positions.is_empty() {
-        // return string;
-    // }
+// if positions.is_empty() {
+// return string;
+// }
 
-    // let min: (isize, isize) = (-10, -10);
-    // let max: (isize, isize) = (30, 10);
+// let min: (isize, isize) = (-10, -10);
+// let max: (isize, isize) = (30, 10);
 
-    // for y in (min.1..=max.1).rev() {
-        // string.push('\n');
+// for y in (min.1..=max.1).rev() {
+// string.push('\n');
 
-        // for x in min.0..=max.0 {
-            // if let Some((index, _)) = positions.iter().enumerate().find(|p| p.1.0 == x && p.1.1 == y) {
-                // let regular = &format!("{}", 10 - index);
-                // string.push_str(if index == 0 { "H" } else { regular });
-            // } else if x == 0 && y == 0 {
-                // string.push('s');
-            // } else if x == 0 && y == -2 {
-                // string.push('b');
-            // } else if x == 0 {
-                // string.push('|');
-            // } else if y == 0 {
-                // string.push('-');
-            // } else {
-                // string.push('.');
-            // }
-        // }
-    // }
+// for x in min.0..=max.0 {
+// if let Some((index, _)) = positions.iter().enumerate().find(|p| p.1.0 == x && p.1.1 == y) {
+// let regular = &format!("{}", 10 - index);
+// string.push_str(if index == 0 { "H" } else { regular });
+// } else if x == 0 && y == 0 {
+// string.push('s');
+// } else if x == 0 && y == -2 {
+// string.push('b');
+// } else if x == 0 {
+// string.push('|');
+// } else if y == 0 {
+// string.push('-');
+// } else {
+// string.push('.');
+// }
+// }
+// }
 
-    // string
+// string
 // }
 
 #[cfg(test)]
@@ -148,7 +148,6 @@ mod tests {
         let expected = 2;
         assert_eq!(result, expected);
     }
-
 
     #[test]
     fn test_2() {

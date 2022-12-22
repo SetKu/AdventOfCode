@@ -1,8 +1,4 @@
 #![allow(non_snake_case)]
-
-// Advent of Code
-// Day 3: https://adventofcode.com/2022/day/3
-
 use std::collections::HashMap;
 
 fn main() {

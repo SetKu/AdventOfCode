@@ -107,7 +107,7 @@ fn monkey_business(input: &str, worry_divider: u32, rounds: u32) -> u64 {
     // is because it caps the ceiling of the integers were working with.
     //
     // The reason the common product is taken and not the greatest divisor
-    // is because the common product is a multiple of all the values, whereas the 
+    // is because the common product is a multiple of all the values, whereas the
     // greatest is not.
     //
     // This allows us to trim the big integers down by removing additional groupings of
@@ -128,7 +128,7 @@ fn monkey_business(input: &str, worry_divider: u32, rounds: u32) -> u64 {
                 let monkey_ref = &monkeys[monkey_index];
 
                 // Modulo trick only works if using a worry divisor of one.
-                // This is because the trick only applies via the laws of 
+                // This is because the trick only applies via the laws of
                 // modular multiplication and addition.
                 // Division is a different story...
                 //

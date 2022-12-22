@@ -1,8 +1,5 @@
 #![allow(non_snake_case)]
 
-// Advent of Code
-// Day 2: https://adventofcode.com/2022/day/2
-
 fn main() {
     let input = include_str!("input.txt");
     let total = process(input);

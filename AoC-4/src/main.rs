@@ -1,8 +1,5 @@
 #![allow(non_snake_case)]
 
-// Advent of Code
-// Day 4: https://adventofcode.com/2022/day/4
-
 fn main() {
     let input = include_str!("input.txt");
     let mut completely_overlapping_pairs = 0;
