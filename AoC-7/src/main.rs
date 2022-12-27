@@ -284,7 +284,7 @@ mod tests {
             parent: None,
         };
 
-        let touch = |name: &str, size: usize| File {
+        let touch = |_name: &str, size: usize| File {
             // name: name.to_string(),
             size,
         };

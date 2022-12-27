@@ -45,7 +45,7 @@ fn main() {
     let input = include_str!("input.txt");
     let mut grid_info = grid(input);
 
-    if std::env::args().find(|a| a == "--noimage").is_none() {
+    if !std::env::args().any(|a| a == "--noimage") {
         if let Some(mut desktop) = desktop_dir() {
             let image = graphic::imagify(&grid_info);
             desktop.push("height_map.png");
@@ -207,10 +207,8 @@ fn shortest_from_ground(grid_info: &GridInfo, search: &HashMap<Position, u32>) -
     let mut shortest = u32::MAX;
 
     for (pos, distance) in search {
-        if grid_info.grid[pos.y][pos.x] == 'a' as u8 {
-            if *distance < shortest {
-                shortest = *distance;
-            }
+        if grid_info.grid[pos.y][pos.x] == b'a' && *distance < shortest {
+            shortest = *distance;
         }
     }
 
@@ -280,7 +278,7 @@ mod graphic {
         for x in 0..grid_info.width {
             for y in 0..grid_info.height {
                 let value = grid_info.grid[y][x];
-                let mut pixel = color.clone();
+                let mut pixel = color;
                 let diff = (value - 96) * color_factor;
                 pixel.0[0] -= diff;
                 pixel.0[1] -= diff;
