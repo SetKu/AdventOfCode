@@ -1,0 +1,3 @@
+After finishing this project, an idea I had for optimization was to skip the brunt work of each simulation cycle entirely. This could be achieved by recording the position the previous piece of sand was at two cycles before it came to a rest. The next piece of sand could then skip iterating through potentially hundreds of cycles by starting from that previous 2nd back position. Whilst working this problem I came up with a rather slow solution that I rewrote. However, when I did try to implement this in the version, it seemed much faster to the eye.
+
+Regardless, I thought keeping a note of this would be a good idea.
