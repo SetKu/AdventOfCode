@@ -140,7 +140,7 @@ fn main() {
     } else {
         println!("Image mode disabled.");
     }
-   
+
     let input = include_str!("input.txt");
     let data = parse(input).expect("Failed to parse input.").1;
     let map = build_map(data);
@@ -154,7 +154,9 @@ fn main() {
     let ans_one = part_one(&mut map_one, &source);
     println!("Part One: {}", ans_one);
 
-    println!("Working on part two... It takes longer, but will finish within about a minute or two.");
+    println!(
+        "Working on part two... It takes longer, but will finish within about a minute or two."
+    );
 
     let ans_two = part_two(&mut map_two, &source);
     println!("Part Two: {}", ans_two);

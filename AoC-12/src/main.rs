@@ -255,7 +255,12 @@ mod tests {
     fn sample_input() {
         let input = "Sabqponm\nabcryxxl\naccszExk\nacctuvwj\nabdefghi";
         let expected = 31;
-        let info = grid(input);
+        let mut info = grid(input);
+
+        let start = info.start.clone();
+        info.start = info.end.clone();
+        info.end = start;
+
         let result = dijkstra(&info);
         assert_eq!(expected, result[&info.end]);
     }

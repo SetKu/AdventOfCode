@@ -2,7 +2,7 @@
 
 use std::ops::RangeInclusive;
 
-use nalgebra::{Vector2, vector};
+use nalgebra::{vector, Vector2};
 use nom::bytes::complete::take_till;
 use nom::character::complete::{i64 as parse_i64, multispace1};
 use nom::character::is_digit;
@@ -119,11 +119,11 @@ fn part_two(data: &[Pair], limit: i64) -> i64 {
         .iter()
         .map(|pair| (pair.sensor, manhattan(&pair.sensor, &pair.beacon)))
         .collect::<Vec<_>>();
-    
+
     let answer = domains_by_level(data)
         .into_iter()
         // Instead of iterating over all the trillions of values in the input,
-        // we instead just iterate over the couple million which surround the 
+        // we instead just iterate over the couple million which surround the
         // sensor-beacon ranges, avoiding checking a huge number of frivilous
         // coordinates.
         .flat_map(|(y, range)| {
@@ -132,22 +132,16 @@ fn part_two(data: &[Pair], limit: i64) -> i64 {
                 // for capping points to the diamond shapes. However, it's functional
                 // and as of writing, I'm getting the answer in good time. So I'll leave it here
                 // for now.
-                [
-                    (*range.start(), y - 1),
-                    (*range.start(), y + 1),
-                ]
+                [(*range.start(), y - 1), (*range.start(), y + 1)]
             } else {
-                [
-                    (*range.start() - 1, y),
-                    (*range.end() + 1, y),
-                ]
+                [(*range.start() - 1, y), (*range.end() + 1, y)]
             }
         })
         .filter(|(x, y)| (0..=limit).contains(x) && (0..=limit).contains(y))
         .find(|(x, y)| {
-            !distances.iter().any(|(sensor, distance)| {
-                manhattan(sensor, &vector![*x, *y]) <= *distance
-            })
+            !distances
+                .iter()
+                .any(|(sensor, distance)| manhattan(sensor, &vector![*x, *y]) <= *distance)
         })
         .expect("Failed to find answer for part two.");
 
@@ -156,7 +150,7 @@ fn part_two(data: &[Pair], limit: i64) -> i64 {
 
 #[cfg(test)]
 mod tests {
-    use crate::{parse, parse_line, part_one, part_two, domains_by_level};
+    use crate::{domains_by_level, parse, parse_line, part_one, part_two};
 
     #[test]
     fn part_one_works() {
@@ -190,28 +184,32 @@ mod tests {
     #[test]
     fn domain_leveling_works() {
         let input_1 = "Sensor at x=15, y=5: closest beacon is at x=20, y=3";
-        let result_1 = parse_line(input_1).expect("Parsing straight-up failed for first input.").1;
+        let result_1 = parse_line(input_1)
+            .expect("Parsing straight-up failed for first input.")
+            .1;
         let mut domains_1 = domains_by_level(&vec![result_1]);
         domains_1.sort_by_key(|domain| domain.0);
 
         let input_2 = "Sensor at x=15, y=5: closest beacon is at x=10, y=3";
-        let result_2 = parse_line(input_2).expect("Parsing straight-up failed for second input.").1;
+        let result_2 = parse_line(input_2)
+            .expect("Parsing straight-up failed for second input.")
+            .1;
         let mut domains_2 = domains_by_level(&vec![result_2]);
         domains_2.sort_by_key(|domain| domain.0);
 
         let expected = [
             (-2, 15..=15),
             (-1, 14..=16),
-            ( 0, 13..=17),
-            ( 1, 12..=18),
-            ( 2, 11..=19),
-            ( 3, 10..=20),
-            ( 4,  9..=21),
-            ( 5,  8..=22),
-            ( 6,  9..=21),
-            ( 7, 10..=20),
-            ( 8, 11..=19),
-            ( 9, 12..=18),
+            (0, 13..=17),
+            (1, 12..=18),
+            (2, 11..=19),
+            (3, 10..=20),
+            (4, 9..=21),
+            (5, 8..=22),
+            (6, 9..=21),
+            (7, 10..=20),
+            (8, 11..=19),
+            (9, 12..=18),
             (10, 13..=17),
             (11, 14..=16),
             (12, 15..=15),
