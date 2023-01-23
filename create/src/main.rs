@@ -40,7 +40,7 @@ fn main() {
         .args(["new", "--bin", &name])
         .output()
         .unwrap();
-
+        
     println!("Created new crate in {}", run_dir.to_str().unwrap());
 
     // UPDATE MAIN.RS
@@ -50,9 +50,20 @@ fn main() {
     main_path.push("src/main.rs");
     let main_path_str = main_path.to_str().unwrap();
 
-    let mut main_text = read_to_string(main_path_str).unwrap();
-    main_text.insert_str(0, "#![allow(non_snake_case)]\n\n");
+    // let mut main_text = read_to_string(main_path_str).unwrap();
+    // main_text.insert_str(0, "#![allow(non_snake_case)]\n\n");
+
+    let main_text = "#![allow(non_snake_case)]\n\nfn main() {\n    let input = include_str!(\"input.txt\");\n}\n";
     write(main_path_str, main_text).expect("Failed to save source file.");
+
+    // WRITE AN EMPTY INPUT FILE
+
+    let mut input_path = run_dir.clone();
+    input_path.push(&name);
+    input_path.push("src/input.txt");
+    let input_path_str = input_path.to_str().unwrap();
+    let input_text = "";
+    write(input_path_str, input_text);
 
     // UPDATE WORKSPACE CONFIG
 
