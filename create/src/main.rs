@@ -63,7 +63,7 @@ fn main() {
     input_path.push("src/input.txt");
     let input_path_str = input_path.to_str().unwrap();
     let input_text = "";
-    write(input_path_str, input_text);
+    write(input_path_str, input_text).expect("Failed to create and write to \"input.txt\"");
 
     // UPDATE WORKSPACE CONFIG
 

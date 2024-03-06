@@ -31,8 +31,8 @@ fn parse_line(input: &str) -> IResult<&str, Pair> {
         parse_i64,
     ))(input)
     .map(|result| {
-        let sensor = Vector2::new(result.1 .1, result.1 .3);
-        let beacon = Vector2::new(result.1 .5, result.1 .7);
+        let sensor = Vector2::new(result.1.1, result.1.3);
+        let beacon = Vector2::new(result.1.5, result.1.7);
         (result.0, Pair { sensor, beacon })
     })
 }

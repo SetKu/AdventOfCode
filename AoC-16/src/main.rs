@@ -1,5 +1,6 @@
 #![allow(non_snake_case)]
 
+use indextree::Arena;
 use nom::{
     bytes::complete::tag,
     bytes::complete::take,
@@ -49,7 +50,13 @@ fn parse(input: &str) -> IResult<&str, Vec<Valve>> {
 
 fn main() {
     let input = include_str!("input.txt");
-    let data = parse(input).expect("Failed to parse input.");
+    let data = parse(input).expect("Failed to parse input.").1;
+    let mut arena = Arena::new();
+    arena.reserve(data.len());
+    
+    for valve in data {
+        let node = arena.new_node(valve);
+    }
 }
 
 #[cfg(test)]
